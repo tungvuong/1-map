@@ -91,7 +91,7 @@ WA.onLeaveZone('popupZone', () => {
 
 WA.onEnterZone('popupZone', () => {
     // WA.nav.openCoWebSite("https://www.youtube.com/embed/BGSghRuCDJI?autoplay=1&muted=0",false,"autoplay");
-    WA.nav.openCoWebSite("https://media1.tenor.com/images/f0332c857ae206f5171e7ae2ce296839/tenor.gif?itemid=14094548",false,"microphone");
+    WA.nav.openCoWebSite("https://localhost/girltalk/tenor.gif",false,"microphone");
     mic.start();
     mic.onstart = function() { 
         console.log('speak');
