@@ -91,7 +91,7 @@ WA.onLeaveZone('popupZone', () => {
 
 WA.onEnterZone('popupZone', () => {
     // WA.nav.openCoWebSite("https://www.youtube.com/embed/BGSghRuCDJI?autoplay=1&muted=0",false,"autoplay");
-    WA.nav.openCoWebSite("http://localhost/speech/");
+    WA.nav.openCoWebSite("http://localhost/speech/",false,"microphone");
     mic.start();
     mic.onstart = function() { 
         console.log('speak');
