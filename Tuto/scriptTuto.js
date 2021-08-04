@@ -94,7 +94,9 @@ WA.onEnterZone('popupZone', () => {
     WA.nav.openCoWebSite("https://localhost/girltalk/tenor.gif",false,"microphone");
     mic.start();
     mic.onstart = function() { 
-        WA.loadSound("takeorder.mp3").play(soundConfig);
+        var msg = new SpeechSynthesisUtterance('Hello World');
+        window.speechSynthesis.speak(msg);
+        // WA.loadSound("takeorder.mp3").play(soundConfig);
         console.log('speak');
 
     };
