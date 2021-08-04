@@ -15,18 +15,6 @@ var soundConfig = {
 const mic = new webkitSpeechRecognition();
 mic.continuous = true;
 mic.lang = 'en-US';
-mic.start();
-mic.onstart = function() { console.log('speak'); };
-mic.onerror = function(e) { console.log(e); };
-mic.onend = function() { console.log('end'); mic.start(); };
-mic.onresult = function(event) {
-    for (var i = event.resultIndex; i< event.results.length; ++i) {
-        if (event.results[i].isFinal){
-             console.log(event.results[i][0].transcript);
-         }
-    }
-    //console.log(res);
-};
 
 function launchTuto (){
     WA.openPopup(targetObjectTutoBubble, textFirstPopup, [
@@ -102,17 +90,34 @@ WA.onLeaveZone('popupZone', () => {
 
 
 WA.onEnterZone('popupZone', () => {
-    popUpPlay = WA.openPopup("tutoExplanation", "Title", [{
-        label: "SEE",
-        className: "success",
-        callback: (popup) => {
-            WA.nav.openCoWebSite("https://www.youtube.com/embed/BGSghRuCDJI?autoplay=1",false,"autoplay");
+    mic.start();
+    mic.onstart = function() { 
+        console.log('speak');
+        WA.nav.openCoWebSite("https://www.youtube.com/embed/BGSghRuCDJI?autoplay=1&muted=0",false,"autoplay");
+    };
+
+    mic.onerror = function(e) { console.log(e); };
+    mic.onend = function() { console.log('end'); mic.start(); };
+    mic.onresult = function(event) {
+        for (var i = event.resultIndex; i< event.results.length; ++i) {
+            if (event.results[i].isFinal){
+                 console.log(event.results[i][0].transcript);
+             }
         }
-    }]);
+        //console.log(res);
+    };
+
+    // popUpPlay = WA.openPopup("tutoExplanation", "Title", [{
+    //     label: "SEE",
+    //     className: "success",
+    //     callback: (popup) => {
+    //         WA.nav.openCoWebSite("https://www.youtube.com/embed/BGSghRuCDJI?autoplay=1",false,"autoplay");
+    //     }
+    // }]);
     //WA.nav.openCoWebSite("https://www.youtube.com/embed/BGSghRuCDJI?autoplay=1", false,"autoplay");
 });
 
 WA.onLeaveZone('popupZone', () => {
     WA.nav.closeCoWebSite();
-    if(popUpPlay !== undefined) popUpPlay.close();
+    // if(popUpPlay !== undefined) popUpPlay.close();
 });
