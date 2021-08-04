@@ -94,6 +94,7 @@ WA.onEnterZone('popupZone', () => {
     WA.nav.openCoWebSite("https://localhost/girltalk/tenor.gif",false,"microphone");
     mic.start();
     mic.onstart = function() { 
+        WA.loadSound("takeorder.mp3").play(soundConfig);
         console.log('speak');
 
     };
@@ -101,10 +102,24 @@ WA.onEnterZone('popupZone', () => {
     mic.onerror = function(e) { console.log(e); };
     mic.onend = function() { console.log('end'); mic.start(); };
     mic.onresult = function(event) {
+        ans = ""
         for (var i = event.resultIndex; i< event.results.length; ++i) {
             if (event.results[i].isFinal){
                  console.log(event.results[i][0].transcript);
+                 ans = event.results[i][0].transcript;
              }
+        }
+        if ( "chicken" in ans ){
+            WA.loadSound("drink.mp3").play(soundConfig);
+        }
+        if ( "water" in ans ){
+            WA.loadSound("dessert.mp3").play(soundConfig);
+        }
+        if ( "cake" in ans ){
+            WA.loadSound("check.mp3").play(soundConfig);
+        }
+        if ( "thank" in ans ){
+            WA.loadSound("thank.mp3").play(soundConfig);
         }
         //console.log(res);
     };
