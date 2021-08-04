@@ -109,16 +109,16 @@ WA.onEnterZone('popupZone', () => {
                  ans = event.results[i][0].transcript;
              }
         }
-        if ( "chicken" in ans ){
+        if ( ans.includes("chicken") ){
             WA.loadSound("drink.mp3").play(soundConfig);
         }
-        if ( "water" in ans ){
+        if ( ans.includes("water") ){
             WA.loadSound("dessert.mp3").play(soundConfig);
         }
-        if ( "cake" in ans ){
+        if ( ans.includes("cake") ){
             WA.loadSound("check.mp3").play(soundConfig);
         }
-        if ( "thank" in ans ){
+        if ( ans.includes("thank") ){
             WA.loadSound("thank.mp3").play(soundConfig);
         }
         //console.log(res);
